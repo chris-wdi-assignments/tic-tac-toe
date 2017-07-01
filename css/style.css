@@ -1,8 +1,23 @@
-#board {
-  margin-top: 10px;
+* {
+  box-sizing: border-box;
 }
 
-.box {
+#board {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.square {
   border: 1px solid black;
-  height: 150px;
+  cursor: pointer;
+  user-select: none;
+  height: 100px;
+}
+
+.square:hover {
+  background-color: #eee;
+}
+
+.button-interface {
+  text-align: center;
 }
