@@ -7,7 +7,7 @@ const reset = function () {
     $(this).text('');
   });
   $('.turn-x').addClass('turn-active');
-  $('.turn-y').removeClass('turn-active');
+  $('.turn-o').removeClass('turn-active');
 };
 
 const updatePlayer = function () {
