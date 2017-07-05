@@ -1,13 +1,13 @@
 // this logic will work on any larger, symmetrical matrices
 
-const hWin = function (matrix) {
+const vWin = function (matrix) {
   // will return either name of winner or null of none found
   let winnerWasFound = false;
-  matrix.forEach(function (row) { // an array holding one row is received
+  matrix.forEach(function (col) { // an array holding one col is received
     if (winnerWasFound) {
       return;
     }
-    let reduction = row.reduce(function (lastElement, currentElement) {
+    let reduction = col.reduce(function (lastElement, currentElement) {
       // this .reduce() will either return the name of winner if all are same,
       // or else null
       if (currentElement === lastElement) {
@@ -22,23 +22,22 @@ const hWin = function (matrix) {
     }
   })
   if (winnerWasFound) {
-    console.log('HWin!');
     return winnerWasFound;
   }
 }
 
-const vWin = function (matrix) {
+const hWin = function (matrix) {
   let winnerWasFound = false;
   let value = null;
-  for (let col = 0; col < matrix[0].length; col++) {
+  for (let row = 0; row < matrix[0].length; row++) {
     // this assumes all elements in matrix array are of equal length
-    value = matrix[0][col]; // initialize value so first comparison works
-    for (let row = 1; row < matrix.length; row++) {
+    value = matrix[0][row]; // initialize value so first comparison works
+    for (let col = 1; col < matrix.length; col++) {
       // start from 1 since we compare with previous
-      if (matrix[row][col] === value) {
-        value = matrix[row][col]; // even if we're tracking empty squares
+      if (matrix[col][row] === value) {
+        value = matrix[col][row]; // even if we're tracking empty squares
                                       // that's ok, we still won't get win
-      } else {  // if no match this isn't a winning column
+      } else {  // if no match this isn't a winning row
         value = null;
       }
     }
@@ -46,7 +45,7 @@ const vWin = function (matrix) {
       return value;
     }
   }
-  // if we made it through all columns without returning, no winner
+  // if we made it through all rows without returning, no winner
   return null;
 };
 
@@ -66,11 +65,11 @@ const dWin = function (matrix) {
     return value;
   }
   // ok, now check other diagonal
-  bottomRowIndex = matrix.length - 1; // this is our y-coord to start from
-  value = matrix[bottomRowIndex][0]; // start from bottom left
+  lastColumnIndex = matrix.length - 1; // this is our y-coord to start from
+  value = matrix[lastColumnIndex][0]; // start from bottom left
   for (let i = 1; i < matrix.length; i++) {
-    if (matrix[bottomRowIndex - i][i] === value) {
-      value = matrix[bottomRowIndex - i][i];
+    if (matrix[lastColumnIndex - i][i] === value) {
+      value = matrix[lastColumnIndex - i][i];
     } else {
       value = null;
     }
@@ -96,7 +95,7 @@ const validate = function () {
     if (contents === '') {
       contents = null;  // this helps logic later
     }
-    matrix[row][col] = $(el).text();
+    matrix[col][row] = $(el).text();
     console.log(contents);
     if (contents) {
       numOfPlays++;
@@ -113,7 +112,7 @@ const validate = function () {
   let hasDiagonalWin = dWin(matrix);
   if (hasDiagonalWin) return hasDiagonalWin;
 
-  if (numOfPlays === 9) {
+  if (numOfPlays === 9) { // if no wins but grid full, draw
     return 'draw';
   }
 };
