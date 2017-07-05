@@ -57,7 +57,6 @@ $(document).ready(function() {
   // goes inside this function
   $('#board').on('click', play);
   $('.reset-button').on('click', reset);
-  $('#validate').on('click', validate);
 
   reset();
 });
