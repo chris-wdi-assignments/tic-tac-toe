@@ -1,10 +1,12 @@
-const board = $('#board');
 
 let turn = 'x'; // x always goes first
 
 const reset = () => {
   turn = 'x'; // x goes first
-  board.children('.square').each(() => $(this).text(''));
+  $('.square').each(function () {
+    $(this).text('');
+  });
+  console.log('reset');
 };
 
 const play = (el) => {
@@ -25,4 +27,6 @@ $(document).ready(function() {
   $('#board').on('click', function (e) {
     play(e.target);
   });
+  $('#reset').on('click', () => reset());
+  reset();
 });
