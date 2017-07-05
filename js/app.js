@@ -34,7 +34,17 @@ const play = function (jsEvent) {  // user clicked a square...
   if (result) { // if we have a game ending condition
     turn = null;
     // open modal with game result
-    alert(`${result} won!`);
+    let string = '';
+    if (result === 'draw') {
+      string = 'It was a draw.';
+    } else if (result === 'x') {
+      string = 'Player X won!';
+    } else if (result === 'o') {
+      string = 'Player O won!';
+    }
+    $('#resultsModal').children('p').text()
+    $('#resultsModal').modal();
+    console.log(result + ' won!');
   }
 };
 
