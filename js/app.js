@@ -8,6 +8,7 @@ const reset = function () {
   });
   $('.turn-x').addClass('turn-active');
   $('.turn-o').removeClass('turn-active');
+  $('#resultsModal').modal('hide');
 };
 
 const updatePlayer = function () {
@@ -42,9 +43,8 @@ const play = function (jsEvent) {  // user clicked a square...
     } else if (result === 'o') {
       string = 'Player O won!';
     }
-    $('#resultsModal').children('p').text()
+    $('#resultsModal p').text(string);
     $('#resultsModal').modal();
-    console.log(result + ' won!');
   }
 };
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
   // all code to manipulate the DOM
   // goes inside this function
   $('#board').on('click', play);
-  $('#reset').on('click', reset);
+  $('.reset-button').on('click', reset);
   $('#validate').on('click', validate);
 
   reset();
