@@ -1,6 +1,7 @@
 // this logic will work on any larger, symmetrical matrices
 
 const vWin = function (matrix) {
+  // check for vertical wins
   // will return either name of winner or null of none found
   let winnerWasFound = false;
   matrix.forEach(function (col) { // an array holding one col is received
@@ -27,6 +28,7 @@ const vWin = function (matrix) {
 }
 
 const hWin = function (matrix) {
+  // check for horizontal wins
   let winnerWasFound = false;
   let value = null;
   for (let row = 0; row < matrix[0].length; row++) {
@@ -50,7 +52,8 @@ const hWin = function (matrix) {
 };
 
 const dWin = function (matrix) {
-  // basically two cases, iterating first top to bottom then bottom to top
+  // check for diagonal wins
+  // basically two cases, first starting from top left, then top right
   // assumes matrix is symmetrical
   let value = matrix[0][0]; // init value so first comparison works
   for (let i = 1; i < matrix.length; i++) {
@@ -96,12 +99,10 @@ const validate = function () {
       contents = null;  // this helps logic later
     }
     matrix[col][row] = $(el).text();
-    console.log(contents);
     if (contents) {
       numOfPlays++;
     }
   });
-  console.log(matrix);
 
   let hasHorizontalWin = hWin(matrix);
   if (hasHorizontalWin) return hasHorizontalWin;
