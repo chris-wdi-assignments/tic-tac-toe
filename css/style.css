@@ -31,17 +31,16 @@
   text-align: center;
 }
 
-.yolo {
-  background-color: red;
-}
-
 .turn-indicator {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.turn-active {
-  background-color: #99c;
-  color: white;
+.turn-active.turn-x {
+  background-color: #dfd;
+}
+
+.turn-active.turn-o {
+  background-color: #fdd;
 }
 
 .modal {
