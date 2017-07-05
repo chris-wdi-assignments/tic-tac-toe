@@ -1,4 +1,4 @@
-// this logic will also work on larger matrices
+// this logic will work on any larger, symmetrical matrices
 
 const hWin = function (matrix) {
   // will return either name of winner or null of none found
@@ -29,27 +29,54 @@ const hWin = function (matrix) {
 
 const vWin = function (matrix) {
   let winnerWasFound = false;
-  let lastValue = null;
+  let value = null;
   for (let col = 0; col < matrix[0].length; col++) {
     // this assumes all elements in matrix array are of equal length
+    value = matrix[0][col]; // initialize value so first comparison works
     for (let row = 1; row < matrix.length; row++) {
       // start from 1 since we compare with previous
-      if (matrix[row][col] === matrix[row - 1][col]) {
-        lastValue = matrix[row][col]; // even if we're tracking empty squares
+      if (matrix[row][col] === value) {
+        value = matrix[row][col]; // even if we're tracking empty squares
                                       // that's ok, we still won't get win
       } else {  // if no match this isn't a winning column
-        lastValue = null;
+        value = null;
       }
     }
-    if (lastValue) {  // if we made it through and non-null, this is winner
-      return lastValue;
+    if (value) {  // if we made it through and non-null, this is winner
+      return value;
     }
   }
   // if we made it through all columns without returning, no winner
   return null;
 };
 
-const dWin = function () {};
+const dWin = function (matrix) {
+  // basically two cases, iterating first top to bottom then bottom to top
+  // assumes matrix is symmetrical
+  let value = matrix[0][0]; // init value so first comparison works
+  for (let i = 1; i < matrix.length; i++) {
+    // we start counting from 1 since we compare w/previous element
+    if (matrix[i][i] === value) {
+      value = matrix[i][i];
+    } else {
+      value = null;
+    }
+  }
+  if (value) {
+    return value;
+  }
+  // ok, now check other diagonal
+  bottomRowIndex = matrix.length - 1; // this is our y-coord to start from
+  value = matrix[bottomRowIndex][0]; // start from bottom left
+  for (let i = 1; i < matrix.length; i++) {
+    if (matrix[bottomRowIndex - i][i] === value) {
+      value = matrix[bottomRowIndex - i][i];
+    } else {
+      value = null;
+    }
+  }
+  return value; // no need to test
+};
 
 const validate = function () {
   // will return either 'x' if player x won, 'o' if o won, 'draw' if draw, or
