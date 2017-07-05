@@ -43,7 +43,7 @@ const play = function (jsEvent) {  // user clicked a square...
     } else if (result === 'o') {
       string = 'Player O won!';
     }
-    $('#resultsModal p').text(string);
+    $('#resultsModal h2').text(string);
     $('#resultsModal').modal();
   }
 };
