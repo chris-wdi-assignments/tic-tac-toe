@@ -19,9 +19,9 @@ const updatePlayer = function () {
   $('.turn-indicator').toggleClass('turn-active');  // update indicator
 };
 
-const play = function (el) {  // user clicked a square...
+const play = function (jsEvent) {  // user clicked a square...
   if (!turn) return;  // if game over it must be reset to play
-  $el = $(el);  // just query the element once
+  $el = $(jsEvent.target);  // just query the element once
   contents = $el.text();  // let's read what the square says...
   if (contents === 'x' || contents === 'o') {
     return;  // if this square has already been played do nothing
@@ -38,30 +38,14 @@ const play = function (el) {  // user clicked a square...
   }
 };
 
-const validate = function () {
-  // will return either 'x' if player x won, 'o' if o won, 'draw' if draw, or
-  // null if game is still going
-  let matrix = [
-    [null, null, null],
-    [null, null, null],
-    [null, null, null]
-  ];
-  $('.square').each(function (i, el) {  // populate matrix from DOM
-    let row = Math.floor(i / 3);
-    let col = i % 3;
-    matrix[row][col] = $(el).text();
-  });
-  console.log(matrix);
-};
+// function validate () {} // declared in validate.js
 
 // wait for the DOM to finish loading
 
 $(document).ready(function() {
   // all code to manipulate the DOM
   // goes inside this function
-  $('#board').on('click', function (e) {
-    play(e.target);
-  });
+  $('#board').on('click', play);
   $('#reset').on('click', reset);
   $('#validate').on('click', validate);
 
