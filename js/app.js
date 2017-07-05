@@ -19,6 +19,14 @@ const play = (el) => {
   else throw new Error(`turn is ${turn}, not known!`);
 };
 
+const validate = () => {
+  // will return either 'x' if player x won, 'o' if o won, 'draw' if draw, or
+  // null if game is still going
+  $('.square').each(function (i, el) {
+    $(el).text(i);
+  })
+};
+
 // wait for the DOM to finish loading
 
 $(document).ready(function() {
@@ -28,5 +36,7 @@ $(document).ready(function() {
     play(e.target);
   });
   $('#reset').on('click', () => reset());
+  $('#validate').on('click', () => validate());
+
   reset();
 });
