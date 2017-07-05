@@ -16,11 +16,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <!-- link to custom javascript file (always require after external JS libraries) -->
+    <script src="js/validate.js"></script>
     <script src="js/app.js"></script>
     <title>Tic Tac Toe</title>
   </head>
   <body>
+
     <div class="container">
+    
       <div class="row text-center">
         <div class="col-md-12">
           <h1>Tic Tac Toe</h1>
@@ -39,14 +42,10 @@
           </div>
         </div>
       </div>
-      <div class="row">
-
+      
+      <div class="row panel panel-default">
         <!-- a column represents our game board -->
-        <!-- the `offset` class helps us center the board -->
-        <div class="col-md-6 col-md-offset-3" id="board">
-
-          <!-- you can put rows inside of columns! -->
-          <!-- Bootstrap subdivides these 'nested' rows into 12 columns, too! -->
+        <div class="col-md-6 col-md-offset-3 panel-body" id="board">
           <div class="row">
             <div class="col-xs-4 square">
             </div>
@@ -77,14 +76,16 @@
         </div>  <!-- #board                           -->
       </div>    <!-- .row (this is a #board wrapper)  -->
       
-      <section class="button-interface">
-        <button type="button" class="btn btn-default" id="reset">
-          Reset
-        </button>
+      <section class="button-interface panel panel-default">
+        <div class="panel-body">
+          <button type="button" class="btn btn-default" id="reset">
+            Reset
+          </button>
 
-        <button type="button" class="btn btn-default" id="validate">
-          Validate
-        </button>
+          <button type="button" class="btn btn-default" id="validate">
+            Validate
+          </button>
+        </div>
       </section>
 
     </div>      <!-- .container                       -->
