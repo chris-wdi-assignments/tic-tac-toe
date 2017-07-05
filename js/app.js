@@ -4,7 +4,9 @@ let turn = 'x'; // x always goes first
 const reset = function () {
   turn = 'x'; // x goes first
   $('.square').each(function () {
-    $(this).text('');
+    $this = $(this);  // only query once
+    $this.text('');
+    $this.removeClass('xColor oColor');
   });
   $('.turn-x').addClass('turn-active');
   $('.turn-o').removeClass('turn-active');
@@ -28,6 +30,12 @@ const play = function (jsEvent) {  // user clicked a square...
     return;  // if this square has already been played do nothing
   }
   $el.text(turn); // else fill in square with whoever's turn it is
+
+  if (turn === 'x') {
+    $el.addClass('xColor');  // style square
+  } else if (turn === 'o') {
+    $el.addClass('oColor');
+  }
 
   updatePlayer();
   

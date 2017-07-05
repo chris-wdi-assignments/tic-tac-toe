@@ -19,6 +19,14 @@
   background-color: #eee;
 }
 
+.xColor {
+  background-color: #dfd;
+}
+
+.oColor {
+  background-color: #fdd;
+}
+
 .button-interface {
   text-align: center;
 }
